@@ -1,6 +1,6 @@
 {
   "name": "Nothingness",
   "tagline": "Create every from nothing",
-  "body": "# Aware\r\n\r\n",
+  "body": "# Hacking Google Play\r\nGoogle play is evolving and getting harder to figure out how it's working internally, for example, for latest version of auth:\r\n`POST /auth HTTP/1.1\r\ndevice: 32506279acbeb86e\r\napp: com.google.android.gms\r\nAccept-Encoding: gzip\r\nUser-Agent: GoogleAuth/1.4 (m2 LMY47D); gzip\r\ncontent-length: 8682\r\ncontent-type: application/x-www-form-urlencoded\r\nHost: android.clients.google.com\r\nConnection: Keep-Alive`\r\n\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
