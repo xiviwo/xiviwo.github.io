@@ -6,9 +6,11 @@ categories: blog
 tags: [life,thinking]
 description: something to tell and nothing to tell 
 ---
-##Regain Myself
+
+#Regain Myself
 
 
-```ruby
-Stand up, circle, move forward, step backward, show me the world.
+```
+Stand up....circle..... move forward.....step backward...
+Just show me the world
 ```
