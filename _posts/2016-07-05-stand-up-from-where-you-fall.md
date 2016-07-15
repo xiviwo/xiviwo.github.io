@@ -7,6 +7,8 @@ tags: [life,thinking]
 description: something to tell and nothing to tell 
 ---
 ##Regain Myself
+
+
 ```ruby
 Stand up, circle, move forward, step backward, show me the world.
 ```
