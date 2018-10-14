@@ -6,7 +6,7 @@ categories: Jenkins
 ---
 Disconnect slave from master for maintenance.
 
-{% highlight groovy %}
+{% highlight java %}
 
 def list = ['xxxx','xxxx']
 
@@ -24,7 +24,7 @@ for (slave in jenkins.slaves) {
 
 Reconnect slave to master
 
-{% highlight groovy %}
+{% highlight java %}
 
 def list = ['xxxx','xxxx']
  

@@ -8,7 +8,7 @@ If you found some jenkins jobs are stuck in hours without exit, you probally hav
 
 This script trys to abort those jobs exceed one hour's execution.
 
-{% highlight groovy %}
+{% highlight java %}
 
 Jenkins.instance.getItems().collect { 
 
