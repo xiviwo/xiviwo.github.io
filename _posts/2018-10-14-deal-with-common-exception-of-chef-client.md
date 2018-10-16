@@ -26,7 +26,7 @@ But,I am tired of doing this again and again, why come up with something automat
 
 So, here it comes a simple demo:
 
-Firstly, we create a simple module in the libraries folder:
+Firstly, we create a simple module in the `libraries` folder:
 
 
 ***rpm_db_handler.rb***
