@@ -350,6 +350,7 @@ end
 postgresql_extension 'Postgres pg_trgm' do
   database 'gitlab_production'
   extension 'pg_trgm'
+  version '1.3'
 end
 ```
 
