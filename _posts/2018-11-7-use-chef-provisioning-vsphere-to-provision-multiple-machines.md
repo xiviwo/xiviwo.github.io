@@ -138,13 +138,13 @@ Recipe: @recipe_files::/Users/user/chef/cookbooks/jenkins/provision/vsphere_setu
   * chef_gem[chef-provisioning-vsphere] action install (up to date)
 Recipe: @recipe_files::/Users/user/chef/cookbooks/jenkins/provision/provision.rb
   * machine[jenkins-node] action converge[2018-11-07T11:13:51+08:00] WARN: Checking to see if {"driver_url"=>"vsphere://example.com/sdk?use_ssl=true&insecure=true", "driver_version"=>"1.2.2.3", "server_id"=>"50108654-aae2-789a-d33b-099d7a0b4eb7", "is_windows"=>false, "allocated_at"=>"2018-11-07 01:13:39 UTC", "ipaddress"=>"......"} has been created...
-    - creating jenkins-node on  (example.ibm.com)
+    - creating jenkins-node on  (example.com)
     - finding networks...
     - network: yournetwork
 Cloning VM...40%...52%...62%...72%...91%...Done!
 
     - jenkins-node created
-     id: 50109a86-d71b-7c63-4ec6-540dd4a9f088 on  (example.ibm.com)
+     id: 50109a86-d71b-7c63-4ec6-540dd4a9f088 on  (example.com)
     - update node jenkins-node at chefzero://localhost:8889
     -   update normal.chef_provisioning.reference.allocated_at from "2018-11-07 01:13:39 UTC" to "2018-11-07 03:16:47 UTC"
     -   update normal.chef_provisioning.reference.ipaddress from "........" to nil

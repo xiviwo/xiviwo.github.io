@@ -58,5 +58,17 @@ LDAP users with access to your GitLab server (only showing the first 100 results
 
 Checking LDAP ... Finished
 ```
+
+Adding `--trace` could give you more detailed info
+```shell
+#=> gitlab-rake gitlab:ldap:check --trace
+** Invoke gitlab:ldap:check (first_time)
+** Invoke gitlab_environment (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute gitlab_environment
+** Execute gitlab:ldap:check
+Checking LDAP ...
+```
 [Webhooks]: https://docs.gitlab.com/ee/security/webhooks.html
 [apis]: https://docs.gitlab.com/ee/api/settings.html
