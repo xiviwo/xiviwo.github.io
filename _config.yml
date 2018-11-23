@@ -25,7 +25,8 @@ github_username:  xiviwo
 # Build settings
 markdown: kramdown
 # remote_theme: "mmistakes/minimal-mistakes"
-theme: minima
+# theme: minima
+theme: jekyll-theme-slate
 # theme: minima
 # theme: jekyll-swiss
 # # theme: solar-flair
@@ -47,3 +48,23 @@ plugins:
 #   - vendor/ruby/
 include:
   - "_images"
+
+sass:
+  style: :expanded
+
+# Includes an icon in the footer for each username you enter
+footer-links:
+  dribbble:
+  email: xiviwo@gmail.com
+  facebook: xiviwo@gmail.com
+  flickr:
+  github: xiviwo
+  instagram:
+  linkedin: xiviwo@gmail.com
+  pinterest:
+  rss: # just type anything here for a working RSS icon
+  twitter: xiviwo
+  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  youtube: # channel/<your_long_string> or user/<user-name>
+  googleplus: # anything in your profile username that comes after plus.google.com/
+
