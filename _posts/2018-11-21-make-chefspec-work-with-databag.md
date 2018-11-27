@@ -179,59 +179,144 @@ ChefSpec::ServerRunner.new do |node, server|
 end
 ```
 
-## Full Test Case
+## Standard Way
 
-Hopefully, it's helpful for somebody.
-
+Look like the official way is to use `stub_data_bag` and `stub_data_bag_item` as below with `ChefSpec::SoloRunner`, but of course `ChefSpec::ServerRunner` is also an option.
 ```ruby
-require 'spec_helper'
 
-describe MYUsers do
-  let(:chef_run) do
-    ChefSpec::ServerRunner.new(platform: 'redhat', version: '7.4') do |_node, server|
-      server.create_data_bag('users', 'test_user' => {
-                               'id' => 'test_user',
-                               'password' => 'test_password'
-                             })
-    end
-  end
+let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'redhat', version: '7.4') }
+  let(:list_data) { { 'users' => 'chefzero://localhost:1/data/users' } }
 
   before do
-    allow(Chef::Config).to receive(:[]).and_call_original
-    allow(Chef::Config).to receive(:[]).with(:chef_server_url).and_return('chefzero://localhost:8889')
+    allow_any_instance_of(Chef::DataBag).to receive(:list).and_return(list_data)
+    stub_data_bag('users').and_return(%w(test_user1 test_user2))
+    stub_data_bag_item('users', 'test_user1').and_return(
+      'id' => 'test_user1',
+      'password' => 'test-password1'
+    )
+    stub_data_bag_item('users', 'test_user2').and_return(
+      'id' => 'test_user2',
+      'password' => 'test-password2'
+    )
   end
 
-  describe '#password' do
+  context 'When given user is "test_user1"' do
+    let(:username) { 'test_user1' }
+    it 'has password' do
+      chef_run
+      expect(MYUsers.password?(username)).to eq(true)
+    end
 
-    context 'For username "test_user"' do
-      let(:username) { 'test_user' }
-      it 'expect password of "test_user" to be "test_password"' do
-        chef_run # need to call it explicitly
-        expect(MYUsers.password(username)).to match('test_password')
-      end
+    it 'get password "test-password1"' do
+      expect(MYUsers.password(username)).to eq('test-password1')
     end
   end
+```
+## Make it share context 
 
-  describe '#password?' do
+Let's take one step further, to make the two as share_context
 
-    context 'For username "test_user"' do
-      let(:username) { 'test_user' }
-      it 'expect "test_user" has password' do
-        chef_run # need to call it explicitly
-        expect(MYUsers.password?(username)).to match(true)
-      end
-    end
+***spec_helper.rb***
+```ruby
 
-    context 'For username "fakeuser"' do
-      let(:username) { 'fakeuser' }
-      it 'expect "fakeuser" has no password' do
-        chef_run # need to call it explicitly
-        expect(EIUsers.password?(fakeuser)).to match(false)
-      end
-    end
+RSpec.shared_context 'chef_solo' do
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'redhat', version: '7.4') }
+  let(:list_data) { { 'users' => 'chefzero://localhost:1/data/users' } }
+
+  before do
+    allow_any_instance_of(Chef::DataBag).to receive(:list).and_return(list_data)
+    stub_data_bag('users').and_return(%w(test_user1 test_user2))
+    stub_data_bag_item('users', 'test_user1').and_return(
+      'id' => 'test_user1',
+      'password' => 'test-password1'
+    )
+    stub_data_bag_item('users', 'test_user2').and_return(
+      'id' => 'test_user2',
+      'password' => 'test-password2'
+    )
   end
 end
 
+RSpec.shared_context 'chef_zero' do
+  let(:chef_run) do
+    ChefSpec::ServerRunner.new(platform: 'redhat', version: '7.4') do |node, server|
+      server.create_data_bag('users', 'test_user1' => {
+                               'id' => 'test_user1',
+                               'password' => {
+                                 'encrypted_data' => "izqydW26h2uUjh3QbCa9u2Pm8DA1ZFEDCJqqIA/AuTsi\n",
+                                 'iv' => "wcRpfKnpGbiDffB1\n",
+                                 'auth_tag' => "lZ3NeZgc3/y+8IYLKGCYUw==\n",
+                                 'version' => 3,
+                                 'cipher' => 'aes-256-gcm'
+                               }
+                             }, 'test_user2' => {
+                               'id' => 'test_user2',
+                               'password' => {
+                                 'encrypted_data' => "5Vd/4wadmGGGEdOhftVVJDH3RgADmoMvZAUC+fYvuE1p\n",
+                                 'iv' => "fZmIjzs8SC0MW2Ud\n",
+                                 'auth_tag' => "421m8RQhGe3Lnpcr9B+BuA==\n",
+                                 'version' => 3,
+                                 'cipher' => 'aes-256-gcm'
+                               }
+                             })
+    end
+  end
+end
+```
+## Include the context along with shared_examples
+
+```ruby
+
+describe MyUsers do
+
+  shared_examples 'password test' do
+
+    context 'When given user is "test_user1"' do
+      let(:username) { 'test_user1' }
+      it ' has password' do
+        chef_run
+        expect(MyUsers.password?(username)).to eq(true)
+      end
+
+      it 'get password "test-password1"' do
+        chef_run
+        expect(MyUsers.password(username)).to eq('test-password1')
+      end
+    end
+
+    context 'When given user is "test_user2"' do
+      let(:username) { 'test_user2' }
+      it ' has password' do
+        chef_run
+        expect(MyUsers.password?(username)).to eq(true)
+      end
+
+      it 'get password "test-password2"' do
+        chef_run
+        expect(MyUsers.password(username)).to eq('test-password2')
+      end
+    end
+
+    context 'When given user is "abc"' do
+      let(:username) { 'abc' }
+      it ' has no password' do
+        chef_run
+        expect(MyUsers.password?(username)).to eq(false)
+      end
+    end
+    
+  end
+
+  describe 'When context is chef zero' do
+    include_context 'chef_zero'
+    it_behaves_like 'password test'
+  end
+
+  describe 'When context is chef solo' do
+    include_context 'chef_solo'
+    it_behaves_like 'password test'
+  end
+end
 ```
 
 [stub]: https://github.com/chefspec/chefspec/issues/64
