@@ -28,7 +28,13 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+        <h2 id="post_title"><a href="{{ page.url }}">{{ page.title }}</a></h2>
+        <span class="date"><i class="fa fa-clock-o"></i> {{ page.date | date: '%B %d, %Y'}}</span>
+
         {{ content }}
+
+        {% include recent.html %}
+        
       </section>
     </div>
 

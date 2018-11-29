@@ -82,3 +82,13 @@ RSpec.configure do |config|
   config.log_level = :debug
 end
 ```
+## Get Path of your chef run command
+
+get the path of your chef run, not the one system-wide
+
+```console
+#=> chef exec "which berks"
+/opt/chefdk/bin/berks
+#=> which berks
+/opt/chefdk/embedded/bin/berks
+```
