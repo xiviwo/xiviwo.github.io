@@ -132,8 +132,8 @@ Installing Cookbook Gems:
 Compiling Cookbooks...
 Recipe: @recipe_files::/Users/user/chef/cookbooks/jenkins/provision/vsphere_setup.rb
   * chef_gem[chef-provisioning-vsphere] action install (up to date)
-[2018-11-07T11:13:51+08:00] WARN: Node ei_readonly has an empty run list.
-[2018-11-07T11:13:51+08:00] WARN: Node ei_readonly has an empty run list.
+[2018-11-07T11:13:51+08:00] WARN: Node test_node has an empty run list.
+[2018-11-07T11:13:51+08:00] WARN: Node test_node has an empty run list.
   Converging 2 resources
   * chef_gem[chef-provisioning-vsphere] action install (up to date)
 Recipe: @recipe_files::/Users/user/chef/cookbooks/jenkins/provision/provision.rb

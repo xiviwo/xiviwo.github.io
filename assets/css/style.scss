@@ -29,7 +29,7 @@
 	flex: 1;
 	margin: auto;
 };
-.social-link {
+.social-link a {
 
 	flex: 1;
 	float: right;
@@ -45,4 +45,8 @@
 };
 .project_title {
 	color: #f2f2f2;
-}
+};
+.inner {
+    position: relative;
+    max-width: 800px;
+};

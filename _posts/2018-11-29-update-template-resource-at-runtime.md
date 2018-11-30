@@ -45,7 +45,6 @@ As far as I am aware of there are at least two ways of doing that
 
 ```ruby
 template node[:gitlab][:config] do
-  ei_perms :appsecure, :file
   # Evaluate variables during runtime
   variables(gitlab_rb: lazy { node[:gitlab][:gitlab_rb].to_hash })
   helper(:single_quote) { |value| value.nil? ? nil : "'#{value}'" }

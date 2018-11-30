@@ -38,7 +38,7 @@ For example as below, you can see it's actually http `GET` to `https://chef.exam
 #=> knife tag list node1 -VV
 INFO: Using configuration from /Users/users/.chef/knife.rb
 .............
-DEBUG: Signing the request as ei_readonly
+DEBUG: Signing the request as test_node
 .............
 DEBUG: Initiating GET to https://chef.example.com/organizations/org/nodes/node1
 DEBUG: ---- HTTP Request Header Data: ----
