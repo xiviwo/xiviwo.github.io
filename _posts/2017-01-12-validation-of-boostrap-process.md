@@ -241,3 +241,25 @@ Sample output:
 Creating a new client identity for test_validator_node using the validator key.
 [2018-12-10T14:59:09+08:00] INFO: Client key /etc/chef/client.pem is not present - registering
 ```
+
+Source code can let us have better understand what the process is like:
+
+
+```ruby
+def register(client_name = node_name, config = Chef::Config)
+  if !config[:client_key]
+    events.skipping_registration(client_name, config)
+    logger.trace("Client key is unspecified - skipping registration")
+  elsif File.exists?(config[:client_key])
+    events.skipping_registration(client_name, config)
+    logger.trace("Client key #{config[:client_key]} is present - skipping registration")
+  else
+    events.registration_start(node_name, config)
+    logger.info("Client key #{config[:client_key]} is not present - registering")
+    Chef::ApiClient::Registration.new(node_name, config[:client_key]).run
+    events.registration_completed
+  end
+  # We now have the client key, and should use it from now on.
+  @rest = Chef::ServerAPI.new(config[:chef_server_url], client_name: client_name,
+  # ......          
+```
