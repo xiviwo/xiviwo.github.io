@@ -11,7 +11,7 @@ baseurl: /
 sass:
   sass_dir: _sass
 
-remote_theme: 
+remote_theme: samarsault/texture
 permalink: /posts/:title/
 texture:
   title: Tom's Wonderland
