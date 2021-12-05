@@ -4,13 +4,14 @@ email: xiviwo@gmail.com
 description: > # this means to ignore newlines until "show_exerpts:"
   This my blog about my work and life, tell what you think with {{ site.email }}
 show_excerpts: true # set to true to show excerpts on the homepage
-baseurl: /home
+baseurl: /
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 sass:
   sass_dir: _sass
 
+remote_theme: 
 permalink: /posts/:title/
 texture:
   title: Tom's Wonderland
