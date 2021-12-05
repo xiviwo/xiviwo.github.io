@@ -5,7 +5,7 @@ date:   2021-12-02 21:25:50 +0800
 categories: Ansible
 ---
 
-It has been quite a while since last post, as I move to a new company where I can't easy sync item to github due to strict security policy, so I have to type something all from my memory. Oh, God. 
+It has been quite a while since last post, as I move to a new company where I can't easily sync anything to github due to strict security policy, of course, there is nothing relative any policy here. So I have to type something all from my memory. Oh, God. 
 
 ### My Use Case 
 I have one playbook which needs to skip `dev_only` tag for `prod` environment and likewise, skip `prod_only` for `dev` environment. So I wish there were some built-in ansible magic variable(s) that I can set skip-tags by default. Unfortunately, as far as I know, there is no such thing for ansible. Yes, there is one magic variable: `ansible_skip_tags`, but it's read-only variable, you can see what tags are being skipped, but you can't set it. 
