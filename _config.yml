@@ -1,69 +1,46 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
 title: Tom's Wonderland
+author: Tom WU
 email: xiviwo@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  My blog about DevOps, life...
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://xiviwo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: xiviwo
-github_username:  xiviwo
+description: > # this means to ignore newlines until "show_exerpts:"
+  This my blog about my work and life, tell what you think with {{ site.email }}
+show_excerpts: true # set to true to show excerpts on the homepage
+baseurl: /home
+
+# Minima date format
+# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+sass:
+  sass_dir: _sass
+
+permalink: /posts/:title/
+texture:
+  title: Tom's Wonderland
+  tagline: Devops. Engineer
+  date_format: "%b %-d, %Y"
+  style: black
+  showNav: true
+  showPicker: false
+  disqus_shortname: games
+
+  # generate social links in footer
+  social_links:
+    twitter: xiviwo
+    github:  xiviwo
+    linkedIn: xiviwo
+    rss: rss
+ 
+  navigation:
+    - title: My Work
+      url: "/my-work"
+    - title: Resume
+      url: "/resume"
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+header_pages:
+- about.md
 
 # Build settings
-markdown: kramdown
-# remote_theme: "mmistakes/minimal-mistakes"
-# theme: minima
-theme: jekyll-theme-slate
-# theme: minima
-# theme: jekyll-swiss
-# # theme: solar-flair
-# # theme: jekyll-theme-cayman
-# theme_color: blue
+# theme: texture
+
 plugins:
-  - jekyll-feed
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-include:
-  - "_images"
-
-sass:
-  style: :expanded
-
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble:
-  email: xiviwo@gmail.com
-  facebook: xiviwo@gmail.com
-  flickr:
-  github: xiviwo
-  instagram:
-  linkedin: xiviwo@gmail.com
-  pinterest:
-  rss: xiviwo # just type anything here for a working RSS icon
-  twitter: xiviwo
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
+  - jekyll-seo-tag
+#  - jekyll-feed
