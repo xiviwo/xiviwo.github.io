@@ -129,7 +129,7 @@ For example, nothing will be executed unless we provide `service_name` variable,
     msg: "{{ service_name }}"
   changed_when: true 
   when: service_name is defined
-  notify: "{{service_name}}"
+  notify: "{{ service_name }}"
 ```
 
 ### Need to reuse handler code as `task` not as `handler`
