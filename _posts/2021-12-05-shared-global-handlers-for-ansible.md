@@ -87,17 +87,22 @@ It will cause duplicate code here and there, very hard to manage.
 The best way I am aware of is to create a role to share common handler among other roles.
 There are multiple ways to reference shared handlers role in other roles or tasks:
 * reference by include_role
+  
   ```yaml
   - include_role:
       name: demo_service
     tags: always 
   ```
+
 * reference by role 
+  
   ```yaml
   roles:
     - { role: demo_service, tags: always } 
   ```
+
 * reference by dependencies 
+  
   `meta/main.yml`
   ```yaml
   dependencies:
