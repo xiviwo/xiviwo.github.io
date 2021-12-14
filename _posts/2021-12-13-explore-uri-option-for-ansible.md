@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Explore the uri library option for ansible"
-date:   2021-12-05 13:03:50 +0800
+date:   2021-12-14 13:03:50 +0800
 categories: Ansible URI Module
 ---
 
@@ -13,8 +13,8 @@ The most obvious and straight-foward way to request http resources, some like：
 ```sh
 curl -k -u 'admin:admin' https://my.example.com/path/to/myresource.html 
 ```
-Seem to b simple enough, but definitely, it's not elegant way I wish. 
-Things could go to very messy soon enough if the url is getting longer or there are many variable in the curl command. You will yourself at lost while reading the long string. 
+Seem to be simple enough, but definitely, it's not elegant way I wish. 
+Things could go to very messy soon enough if the url is getting longer or there are many variable in the curl command. You will find yourself at lost while reading the long string. 
 
 One big problem of doing this way: it may dramatically increase the risk of exposing your password during the execution. 
 
@@ -67,7 +67,7 @@ When it comes to python code, there is no doubt the famouse `requests` library w
 [requests](https://docs.python-requests.org/en/latest/) library is one of the best python library I ever worked with, with its simple elegant syntax, powerful feature. 
 I think that is why it gain such wide-spread popularity in python's world. 
 
-The only one problem with `requests` is that it's needed to be installed on that specific host before it can be refered to by ansible module running on that host, or you will be seeing ugly and familiar message,`No module named 'requests'`. 
+The only one problem with `requests` is that it's needed to be installed on that specific host before it can be refered to by ansible module running on that host, or you will be seeing ugly and familiar message, `No module named 'requests'`. 
 
 ```sh
 # Need to install on host in order for ansible module to import 
