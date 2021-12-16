@@ -158,7 +158,8 @@ For example, for your custom module
     basic_auth: true
 ```
 
-password/username **MUST** be passed on to `url_username`/`url_password` of `fetch_url` methods. 
+password/username **MUST** be passed on to `url_username`/`url_password` to module params. 
+And, then `fetch_url` will get this info from module object by passing in module as parameter.
 
 ```py
 username = module.params['username']
@@ -274,7 +275,7 @@ to
 ```py
 # import requests
 
-from .fields import fields.RequestField
+from .fields import RequestField
 
 ```
 
